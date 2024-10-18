@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ContactModel>
+@{
+    ViewData["title"] = "Contact Info";
+
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+<body>
+
+    <h4>List Contact</h4>
+
+    <table class="table" id="myTable">
+        <thead>
+
+
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Map</th>
+              <th>Email</th>
+              <th>Logo Image</th>
+              <th>Phone</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Name</td>
+                    <td>@Html.Raw(item.Description)</td>
+                    <td>@Html.Raw(item.Map)</td>
+                    <td>@item.Email</td>
+                    <td> <img src="~/media/logo/@item.LogoImage" width="120px" height="150px" /></td>
+                    <td>@item.Phone</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-controller="Contact" >Edit</a>
+                    </td>
+
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</body>
+
+@section Scripts {
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
+}
+</html>
+
+
+
+
